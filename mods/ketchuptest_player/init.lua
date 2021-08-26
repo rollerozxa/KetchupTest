@@ -16,3 +16,10 @@ minetest.register_on_joinplayer(function(player)
 		texture = "moon.png"
 	})
 end)
+
+minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
+	-- Unlimited blocks in creative mode
+	if placer and placer:is_player() then
+		return minetest.is_creative_enabled(placer:get_player_name())
+	end
+end)
